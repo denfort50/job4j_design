@@ -2,6 +2,8 @@ package ru.job4j.it;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -42,8 +44,11 @@ public class MatrixItTest {
         };
         MatrixIt it = new MatrixIt(in);
         assertThat(it.next(), is(1));
+        assertTrue(it.hasNext());
         assertThat(it.next(), is(2));
+        assertTrue(it.hasNext());
         assertThat(it.next(), is(3));
+        assertFalse(it.hasNext());
     }
 
     @Test
