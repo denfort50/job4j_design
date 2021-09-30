@@ -18,6 +18,13 @@ public class ListUtilsTest {
         assertThat(input, is(Arrays.asList(1, 2, 3)));
     }
 
+    @Test
+    public void whenAddBeforeFirst() {
+        List<Integer> input = new ArrayList<>(Arrays.asList(1, 3));
+        ListUtils.addBefore(input, 0, 2);
+        assertThat(input, is(Arrays.asList(2, 1, 3)));
+    }
+
     @Test(expected = IndexOutOfBoundsException.class)
     public void whenAddBeforeWithInvalidIndex() {
         List<Integer> input = new ArrayList<>(Arrays.asList(1, 3));
