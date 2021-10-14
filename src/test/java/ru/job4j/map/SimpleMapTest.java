@@ -31,19 +31,6 @@ public class SimpleMapTest {
     }
 
     @Test
-    public void whenPutThenExpand() {
-        Map<String, Integer> mapOfFriends = new SimpleMap<>();
-        mapOfFriends.put("Denis", 26);
-        mapOfFriends.put("Alexandr", 26);
-        mapOfFriends.put("Leonid", 27);
-        mapOfFriends.put("Ekaterina", 29);
-        mapOfFriends.put("Yriy", 25);
-        assertThat(mapOfFriends.getCapacity(), is(8));
-        mapOfFriends.put("Sergey", 26);
-        assertThat(mapOfFriends.getCapacity(), is(16));
-    }
-
-    @Test
     public void whenGetValue() {
         Map<String, Integer> mapOfFriends = new SimpleMap<>();
         mapOfFriends.put("Denis", 26);
