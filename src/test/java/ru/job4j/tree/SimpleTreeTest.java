@@ -4,6 +4,7 @@ import org.junit.Test;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.MatcherAssert.*;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class SimpleTreeTest {
     @Test
@@ -39,6 +40,27 @@ public class SimpleTreeTest {
         tree.add(4, 5);
         tree.add(5, 6);
         assertFalse(tree.add(2, 6));
+    }
+
+    @Test
+    public void isBinaryTestThenTrue() {
+        Tree<Integer> tree = new SimpleTree<>(1);
+        tree.add(1, 2);
+        tree.add(1, 3);
+        tree.add(2, 4);
+        tree.add(2, 5);
+        assertTrue(tree.isBinary());
+    }
+
+    @Test
+    public void isBinaryTestThenFalse() {
+        Tree<Integer> tree = new SimpleTree<>(1);
+        tree.add(1, 2);
+        tree.add(1, 3);
+        tree.add(2, 4);
+        tree.add(2, 5);
+        tree.add(2, 6);
+        assertFalse(tree.isBinary());
     }
 
 }
