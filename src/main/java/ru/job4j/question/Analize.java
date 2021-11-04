@@ -1,20 +1,20 @@
 package ru.job4j.question;
 
-import java.util.Objects;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Analize {
 
     public static Info diff(Set<User> previous, Set<User> current) {
-        int changed = 0;
-        for (User uCurr : current) {
-            for (User uPrev : previous) {
-                if (uPrev.getId() == uCurr.getId() && !Objects.equals(uPrev.getName(), uCurr.getName())) {
-                    changed++;
-                }
-            }
-        }
+        Map<Integer, String> mapOfPrevious = previous.stream()
+                .collect(Collectors.toMap(User::getId, User::getName));
+        Map<Integer, String> mapOfCurrent = current.stream()
+                .collect(Collectors.toMap(User::getId, User::getName));
+        int changed = (int) mapOfCurrent.keySet()
+                .stream()
+                .filter(id -> mapOfPrevious.containsKey(id) && !mapOfPrevious.containsValue(mapOfCurrent.get(id)))
+                .count();
         int added = (int) current.stream()
                 .filter(uCurr -> !previous.stream()
                         .map(User::getId)
