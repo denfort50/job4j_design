@@ -14,8 +14,7 @@ public class LogFilter {
             List<String> strings = in.lines().toList();
             result = strings.stream().filter(s -> {
                 String[] values = s.split(" ");
-                int penultimate = Integer.parseInt(values[values.length - 2]);
-                return penultimate == 404;
+                return values[values.length - 2].equals("404");
             }).collect(Collectors.toList());
         } catch (Exception e) {
             e.printStackTrace();
