@@ -28,7 +28,7 @@ public class Config {
                                 if (parts.length == 2) {
                                     values.put(parts[0], parts[1]);
                                 } else if (parts.length == 1) {
-                                    values.put(parts[0], null);
+                                    values.put(parts[0], "");
                                 }
                             }
                     );
