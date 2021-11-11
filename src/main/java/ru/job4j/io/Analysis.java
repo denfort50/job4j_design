@@ -17,7 +17,6 @@ public class Analysis {
                     stop = parts[1];
                 }
                 if (!Objects.equals(start, "") && !Objects.equals(stop, "")) {
-                    System.out.println(start + " " + stop);
                     out.println(start + ";" + stop);
                     start = "";
                     stop = "";
