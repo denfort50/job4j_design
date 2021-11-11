@@ -11,9 +11,9 @@ public class Analysis {
             String stop = "";
             while (in.ready()) {
                 String[] parts = in.readLine().split(" ");
-                if ((parts[0].equals("400") || parts[0].equals("500")) && start.isEmpty()) {
+                if (("400".equals(parts[0])) || "500".equals(parts[0]) && start.isEmpty()) {
                     start = parts[1];
-                } else if (!Objects.equals(start, "") && (parts[0].equals("200") || parts[0].equals("300"))) {
+                } else if (!Objects.equals(start, "") && ("200".equals(parts[0]) || "300".equals(parts[0]))) {
                     stop = parts[1];
                 }
                 if (!Objects.equals(start, "") && !Objects.equals(stop, "")) {
