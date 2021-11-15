@@ -9,20 +9,24 @@ import java.util.*;
 
 public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
 
-    Set<FileProperty> unique = new HashSet<>();
-    Map<FileProperty, Path> duplicates = new HashMap<>();
+    Map<FileProperty, Path> uniques = new HashMap<>();
+    Map<Path, FileProperty> duplicates = new LinkedHashMap<>();
 
-    public Map<FileProperty, Path> getDuplicates() {
+
+    public Map<Path, FileProperty> getDuplicates() {
         return duplicates;
     }
 
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
         FileProperty fileProperty = new FileProperty(file.toFile().length(), file.toFile().getName());
-        if (unique.contains(fileProperty)) {
-            duplicates.put(fileProperty, file.toAbsolutePath());
+        if (uniques.containsKey(fileProperty) && !duplicates.containsValue(fileProperty)) {
+            duplicates.put(uniques.get(fileProperty), fileProperty);
+            duplicates.put(file.toAbsolutePath(), fileProperty);
+        } else if (uniques.containsKey(fileProperty) && duplicates.containsValue(fileProperty)) {
+            duplicates.put(file.toAbsolutePath(), fileProperty);
         }
-        unique.add(fileProperty);
+        uniques.put(fileProperty, file.toAbsolutePath());
         return super.visitFile(file, attrs);
     }
 }
