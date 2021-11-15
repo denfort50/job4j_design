@@ -10,9 +10,9 @@ import java.util.*;
 public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
 
     Set<FileProperty> unique = new HashSet<>();
-    Set<FileProperty> duplicates = new TreeSet<>(Comparator.comparingInt(o -> (int) o.getSize()));
+    Map<FileProperty, Path> duplicates = new HashMap<>();
 
-    public Set<FileProperty> getDuplicates() {
+    public Map<FileProperty, Path> getDuplicates() {
         return duplicates;
     }
 
@@ -20,7 +20,7 @@ public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
         FileProperty fileProperty = new FileProperty(file.toFile().length(), file.toFile().getName());
         if (unique.contains(fileProperty)) {
-            duplicates.add(fileProperty);
+            duplicates.put(fileProperty, file.toAbsolutePath());
         }
         unique.add(fileProperty);
         return super.visitFile(file, attrs);
