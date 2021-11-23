@@ -14,6 +14,12 @@ public class ArgsNameTest {
     }
 
     @Test
+    public void whenGetSecond() {
+        ArgsName jvm = ArgsName.of(new String[] {"-Xmx=512", "-encoding=UTF-8"});
+        assertThat(jvm.get("encoding"), is("UTF-8"));
+    }
+
+    @Test
     public void whenGetFirstReorder() {
         ArgsName jvm = ArgsName.of(new String[] {"-encoding=UTF-8", "-Xmx=512"});
         assertThat(jvm.get("Xmx"), is("512"));
@@ -27,6 +33,6 @@ public class ArgsNameTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void whenWrongSomeArgument1() {
-        ArgsName jvm = ArgsName.of(new String[] {"-enconding=UTF-8", "-Xmx="});
+        ArgsName jvm = ArgsName.of(new String[] {"-encoding=UTF-8", "-Xmx="});
     }
 }

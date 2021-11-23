@@ -18,13 +18,9 @@ public class ArgsName {
         Arrays.stream(args).forEach(s -> {
             String[] parts = s.split("=");
             if (parts.length == 1) {
-                throw new IllegalArgumentException("One of argument is incorrect.");
-            } else if (s.startsWith("-Xmx")) {
-                values.put("Xmx", parts[1]);
-            } else if (s.startsWith("-out")) {
-                values.put("out", parts[1]);
-            } else if (s.startsWith("-encoding")) {
-                values.put("encoding", parts[1]);
+                throw new IllegalArgumentException("One of argument is absent.");
+            } else {
+                values.put(parts[0].substring(1), parts[1]);
             }
         });
     }
