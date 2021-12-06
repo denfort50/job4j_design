@@ -45,13 +45,16 @@ public class CSVReader {
     }
 
     public static void writeResultToCsv(List<String> result, String output) {
-        String ln = System.lineSeparator();
-        try (FileOutputStream out = new FileOutputStream(output)) {
-            for (String s : result) {
-                out.write((s + ln).getBytes());
+        if ("stdout".equals(output)) {
+            result.forEach(System.out::println);
+        } else {
+            try (FileOutputStream out = new FileOutputStream(output)) {
+                for (String s : result) {
+                    out.write((s + System.lineSeparator()).getBytes());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
