@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<car>model="Toyota Land Cruiser 200" sportCar="false" year="2016"
+    <engine>name="VDFTV" volume="4.5" horsePowers="235"</engine>
+    <proses>
+        <pros>reliability</pros>
+        <pros>prestige</pros>
+    </proses>
+</car>
