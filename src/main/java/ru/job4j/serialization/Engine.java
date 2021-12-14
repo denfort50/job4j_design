@@ -29,4 +29,16 @@ public class Engine {
                 + ", horsePowers=" + horsePowers
                 + '}';
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getVolume() {
+        return volume;
+    }
+
+    public int getHorsePowers() {
+        return horsePowers;
+    }
 }

@@ -63,6 +63,11 @@
       <artifactId>jaxb-runtime</artifactId>
       <version>3.0.2-b01</version>
     </dependency>
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20200518</version>
+    </dependency>
   </dependencies>
 
   <build>
