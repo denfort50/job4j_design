@@ -1,0 +1,12 @@
+C:\projects\job4j_design\data\answers.txt
+C:\projects\job4j_design\data\chatLogs.txt
+C:\projects\job4j_design\data\csvReaderResult.csv
+C:\projects\job4j_design\data\dataForCsvReader.csv
+C:\projects\job4j_design\data\pair_without_comment.properties
+C:\projects\job4j_design\data\pair_with_comment_and_empty_lines.properties
+C:\projects\job4j_design\data\pair_with_pattern_violation.properties
+C:\projects\job4j_design\data\searchResult.txt
+C:\projects\job4j_design\data\searchResultByMask.txt
+C:\projects\job4j_design\data\searchResultByName.txt
+C:\projects\job4j_design\data\server.log
+C:\projects\job4j_design\data\unavailable.csv
