@@ -82,7 +82,6 @@ public class TableEditor implements AutoCloseable {
             properties.load(in);
         }
         try (TableEditor tableEditor = new TableEditor(properties)) {
-            tableEditor.initConnection();
 
             tableEditor.createTable("apple");
             System.out.println(getTableScheme(tableEditor.connection, "apple"));
