@@ -1,6 +1,7 @@
 package ru.job4j.jdbc;
 
 import java.io.FileReader;
+import java.io.Reader;
 import java.sql.*;
 import java.util.Properties;
 import java.util.StringJoiner;
@@ -23,40 +24,30 @@ public class TableEditor implements AutoCloseable {
         connection = DriverManager.getConnection(url, login, password);
     }
 
-    public void createTable(String tableName) throws SQLException {
+    public void createStatement(String sql) throws SQLException {
         try (Statement statement = connection.createStatement()) {
-            String sql = String.format("create table if not exists %s(%s);",
-                    tableName, "id serial primary key");
             statement.execute(sql);
         }
+    }
+
+    public void createTable(String tableName) throws SQLException {
+        createStatement(String.format("create table if not exists %s(%s);", tableName, "id serial primary key"));
     }
 
     public void dropTable(String tableName) throws SQLException {
-        try (Statement statement = connection.createStatement()) {
-            String sql = String.format("drop table %s;", tableName);
-            statement.execute(sql);
-        }
+        createStatement(String.format("drop table %s;", tableName));
     }
 
     public void addColumn(String tableName, String columnName, String type) throws SQLException {
-        try (Statement statement = connection.createStatement()) {
-            String sql = String.format("alter table %s add column if not exists %s %s;", tableName, columnName, type);
-            statement.execute(sql);
-        }
+        createStatement(String.format("alter table %s add column if not exists %s %s;", tableName, columnName, type));
     }
 
     public void dropColumn(String tableName, String columnName) throws SQLException {
-        try (Statement statement = connection.createStatement()) {
-            String sql = String.format("alter table %s drop column %s;", tableName, columnName);
-            statement.execute(sql);
-        }
+        createStatement(String.format("alter table %s drop column %s;", tableName, columnName));
     }
 
     public void renameColumn(String tableName, String columnName, String newColumnName) throws SQLException {
-        try (Statement statement = connection.createStatement()) {
-            String sql = String.format("alter table %s rename column %s to %s;", tableName, columnName, newColumnName);
-            statement.execute(sql);
-        }
+        createStatement(String.format("alter table %s rename column %s to %s;", tableName, columnName, newColumnName));
     }
 
     public static String getTableScheme(Connection connection, String tableName) throws Exception {
@@ -87,26 +78,28 @@ public class TableEditor implements AutoCloseable {
 
     public static void main(String[] args) throws Exception {
         Properties properties = new Properties();
-        properties.load(new FileReader("C:/projects/job4j_design/app.properties"));
-        TableEditor tableEditor = new TableEditor(properties);
-        tableEditor.initConnection();
-        Connection connection = tableEditor.connection;
+        try (Reader in = new FileReader("app.properties")) {
+            properties.load(in);
+        }
+        try (TableEditor tableEditor = new TableEditor(properties)) {
+            tableEditor.initConnection();
 
-        tableEditor.createTable("apple");
-        System.out.println(getTableScheme(connection, "apple"));
+            tableEditor.createTable("apple");
+            System.out.println(getTableScheme(tableEditor.connection, "apple"));
 
-        tableEditor.addColumn("apple", "device", "varchar(255)");
-        System.out.println(getTableScheme(connection, "apple"));
+            tableEditor.addColumn("apple", "device", "varchar(255)");
+            System.out.println(getTableScheme(tableEditor.connection, "apple"));
 
-        tableEditor.addColumn("apple", "year", "date");
-        System.out.println(getTableScheme(connection, "apple"));
+            tableEditor.addColumn("apple", "year", "date");
+            System.out.println(getTableScheme(tableEditor.connection, "apple"));
 
-        tableEditor.dropColumn("apple", "year");
-        System.out.println(getTableScheme(connection, "apple"));
+            tableEditor.dropColumn("apple", "year");
+            System.out.println(getTableScheme(tableEditor.connection, "apple"));
 
-        tableEditor.renameColumn("apple", "device", "name");
-        System.out.println(getTableScheme(connection, "apple"));
+            tableEditor.renameColumn("apple", "device", "name");
+            System.out.println(getTableScheme(tableEditor.connection, "apple"));
 
-        tableEditor.dropTable("apple");
+            tableEditor.dropTable("apple");
+        }
     }
 }
