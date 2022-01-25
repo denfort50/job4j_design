@@ -21,13 +21,19 @@ public class ImportDB {
         this.dump = dump;
     }
 
-    public List<User> load() throws IOException {
+    public List<User> load() {
         List<User> users = new ArrayList<>();
         try (BufferedReader rd = new BufferedReader(new FileReader(dump))) {
             rd.lines().forEach(s -> {
                 String[] values = s.split(";");
+                if (values.length != 2 || values[0] == null || values[1] == null) {
+                    throw new IllegalArgumentException("Incoming data is incorrect.");
+                }
                 users.add(new User(values[0], values[1]));
+
             });
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return users;
     }
