@@ -26,7 +26,7 @@ public class ImportDB {
         try (BufferedReader rd = new BufferedReader(new FileReader(dump))) {
             rd.lines().forEach(s -> {
                 String[] values = s.split(";");
-                if (values.length != 2 || values[0] == null || values[1] == null) {
+                if (values.length != 2 || values[0].isEmpty() || values[1].isEmpty()) {
                     throw new IllegalArgumentException("Incoming data is incorrect.");
                 }
                 users.add(new User(values[0], values[1]));
