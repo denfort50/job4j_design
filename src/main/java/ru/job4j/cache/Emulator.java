@@ -27,7 +27,7 @@ public class Emulator {
         System.out.println("Файл загружен в кэш.");
     }
 
-    public String getContentFromCache() {
+    public String getContentFromCache() throws IOException {
         System.out.println("Содержимое файла: ");
         String result = dirFileCache.get(fileName);
         if (result.isEmpty()) {
@@ -38,7 +38,6 @@ public class Emulator {
 
     public static void main(String[] args) throws IOException {
         Emulator emulator = new Emulator();
-        emulator.loadContentToCache();
         System.out.println(emulator.getContentFromCache());
     }
 }
