@@ -22,5 +22,5 @@ public abstract class AbstractCache<K, V> {
         return result;
     }
 
-    protected abstract V load(K key) throws IOException;
+    protected abstract V load(K key);
 }

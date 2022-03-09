@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 public class Emulator {
 
-    DirFileCache dirFileCache = new DirFileCache(specifyTheCachedDirectory());
-    String fileName = specifyTheFileName();
+    private final DirFileCache dirFileCache = new DirFileCache(specifyTheCachedDirectory());
+    private final String fileName = specifyTheFileName();
 
     public String specifyTheCachedDirectory() {
         System.out.println("Введите адрес кэшируемой директории: ");
