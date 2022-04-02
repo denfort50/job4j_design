@@ -2,6 +2,7 @@ package ru.job4j.tdd;
 
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.nullValue;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -55,4 +56,37 @@ public class CinemaTest {
         assertThat(ticket3D.getRow(), is(1));
     }
 
+    @Ignore
+    @Test(expected = IllegalArgumentException.class)
+    public void whenColumnNotExistThenException() {
+        Account account = new AccountCinema();
+        Cinema cinema = new Cinema3D();
+        Calendar date = Calendar.getInstance();
+        date.set(2022, Calendar.APRIL, 5, 23, 0);
+        Ticket ticket = cinema.buy(account, 1, 250, date);
+    }
+
+    @Ignore
+    @Test(expected = IllegalArgumentException.class)
+    public void whenSessionIsNotAvailableForDateThenException() {
+        Account account = new AccountCinema();
+        Cinema cinema = new Cinema3D();
+        Session session = new Session3D();
+        cinema.add(session);
+        Calendar date = Calendar.getInstance();
+        date.set(2023, Calendar.APRIL, 5, 23, 0);
+        Ticket ticket = cinema.buy(account, 1, 25, date);
+    }
+
+    @Ignore
+    @Test(expected = IllegalArgumentException.class)
+    public void whenSeatHasAlreadyBoughtThenException() {
+        Account account = new AccountCinema();
+        Cinema cinema = new Cinema3D();
+        Session session = new Session3D();
+        cinema.add(session);
+        Calendar date = Calendar.getInstance();
+        date.set(2022, Calendar.APRIL, 5, 23, 0);
+        Ticket ticket = cinema.buy(account, 1, 20, date);
+    }
 }
