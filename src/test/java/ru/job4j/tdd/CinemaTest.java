@@ -2,14 +2,15 @@ package ru.job4j.tdd;
 
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.nullValue;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import java.util.Calendar;
 import java.util.List;
 
 public class CinemaTest {
 
+    @Ignore
     @Test
     public void whenBuy() {
         Account account = new AccountCinema();
@@ -20,6 +21,7 @@ public class CinemaTest {
         assertThat(ticket, is(new Ticket3D()));
     }
 
+    @Ignore
     @Test
     public void whenFind() {
         Cinema cinema = new Cinema3D();
@@ -28,6 +30,7 @@ public class CinemaTest {
         assertThat(sessions, is(List.of(new Session3D())));
     }
 
+    @Ignore
     @Test
     public void whenAccountUseTicketOnlyOnce() {
         Account account = new AccountCinema();
@@ -40,6 +43,7 @@ public class CinemaTest {
         assertThat(account.get(ticket3D), is(false));
     }
 
+    @Ignore
     @Test
     public void whenTicketHasRightRowAndColumn() {
         Account account = new AccountCinema();
