@@ -87,6 +87,7 @@ public class CinemaTest {
         cinema.add(session);
         Calendar date = Calendar.getInstance();
         date.set(2022, Calendar.APRIL, 5, 23, 0);
-        Ticket ticket = cinema.buy(account, 1, 20, date);
+        Ticket ticket1 = cinema.buy(account, 1, 20, date);
+        Ticket ticket2 = cinema.buy(account, 1, 20, date);
     }
 }
