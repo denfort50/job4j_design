@@ -1,10 +1,11 @@
 package ru.job4j.ood.srp;
 
-import java.util.List;
 import java.util.function.Predicate;
 
 public class ReportAccounting implements Report {
     private Store store;
+
+    public static final int TO_USD = 1000 / 80;
 
     public ReportAccounting(Store store) {
         this.store = store;
@@ -18,7 +19,7 @@ public class ReportAccounting implements Report {
             text.append(employee.getName()).append(";")
                     .append(employee.getHired()).append(";")
                     .append(employee.getFired()).append(";")
-                    .append(employee.getSalary() * 1000 / 80).append(" USD;")
+                    .append(employee.getSalary() * TO_USD).append(" USD;")
                     .append(System.lineSeparator());
         }
         return text.toString();

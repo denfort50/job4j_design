@@ -24,17 +24,17 @@ public class ReportAccountingTest {
                 .append(worker1.getName()).append(";")
                 .append(worker1.getHired()).append(";")
                 .append(worker1.getFired()).append(";")
-                .append(worker1.getSalary() * 1000 / 80).append(" USD;")
+                .append(worker1.getSalary() * ReportAccounting.TO_USD).append(" USD;")
                 .append(System.lineSeparator())
                 .append(worker2.getName()).append(";")
                 .append(worker2.getHired()).append(";")
                 .append(worker2.getFired()).append(";")
-                .append(worker2.getSalary() * 1000 / 80).append(" USD;")
+                .append(worker2.getSalary() * ReportAccounting.TO_USD).append(" USD;")
                 .append(System.lineSeparator())
                 .append(worker3.getName()).append(";")
                 .append(worker3.getHired()).append(";")
                 .append(worker3.getFired()).append(";")
-                .append(worker3.getSalary() * 1000 / 80).append(" USD;")
+                .append(worker3.getSalary() * ReportAccounting.TO_USD).append(" USD;")
                 .append(System.lineSeparator());
         assertThat(engine.generate(em -> true), is(expect.toString()));
     }
