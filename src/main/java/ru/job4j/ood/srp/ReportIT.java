@@ -1,6 +1,5 @@
 package ru.job4j.ood.srp;
 
-import java.util.Calendar;
 import java.util.function.Predicate;
 
 public class ReportIT implements Report {
@@ -29,19 +28,5 @@ public class ReportIT implements Report {
         text.append("</body>\n")
                 .append("</html>");
         return text.toString();
-    }
-
-    public static void main(String[] args) {
-        MemStore store = new MemStore();
-        Calendar now = Calendar.getInstance();
-        Employee worker1 = new Employee("Ivan", now, now, 100);
-        Employee worker2 = new Employee("Boris", now, now, 120);
-        Employee worker3 = new Employee("Alex", now, now, 200);
-        store.add(worker1);
-        store.add(worker2);
-        store.add(worker3);
-        Report engine = new ReportIT(store);
-        String result = engine.generate(employee -> true);
-        System.out.println(result);
     }
 }
