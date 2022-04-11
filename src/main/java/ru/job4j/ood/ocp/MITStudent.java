@@ -12,18 +12,18 @@ public class MITStudent extends Student {
      * @param books – книги, которые изучает студент
      * @return список работ, входящих в диссертацию
      */
-//    @Override
-//    public List<String> study(List<String> books) {
-//        return super.study(books);
-//    }
+
+    public List<String> study(List<String> books) {
+        return null;
+    }
 
     /**
      * Метод реализует процесс защиты диссертации
-     * @param thesis – защищаемая диссертация
+     * @param thesisDocuments – защищаемая диссертация
      * @return
      */
-//    @Override
-//    public int thesisDefend(List<String> thesisDocuments) {
-//        return super.thesisDefend(thesisDocuments);
-//    }
+
+    public int thesisDefend(List<String> thesisDocuments) {
+        return 0;
+    }
 }
