@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class MilkFood extends Food {
 
-    String manufacturer;
+    private String manufacturer;
 
     public MilkFood(String name, LocalDate expiryDate, LocalDate createDate, int price, int discount, String manufacturer) {
         super(name, expiryDate, createDate, price, discount);
