@@ -2,10 +2,13 @@ package ru.job4j.ood.warehouse;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 
 public interface Redistribution {
 
     boolean add(Food food, LocalDate date);
+
+    List<Food> get();
 
     boolean accept(Food food, LocalDate date);
 

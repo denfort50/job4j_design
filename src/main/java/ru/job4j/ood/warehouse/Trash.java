@@ -26,4 +26,9 @@ public class Trash implements Redistribution {
         }
         return result;
     }
+
+    @Override
+    public List<Food> get() {
+        return storage;
+    }
 }

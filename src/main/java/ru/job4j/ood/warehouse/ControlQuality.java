@@ -2,29 +2,23 @@ package ru.job4j.ood.warehouse;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.function.Predicate;
 
 public class ControlQuality {
 
     private final List<Redistribution> redistributions;
-    private final Food food;
     private final LocalDate date;
 
-    public ControlQuality(List<Redistribution> redistributions, Food food, LocalDate date) {
+    public ControlQuality(List<Redistribution> redistributions, LocalDate date) {
         this.redistributions = redistributions;
-        this.food = food;
         this.date = date;
     }
 
-    public String executeRedistribution() {
-        String result = "";
-        Predicate<Redistribution> predicate = redistribution -> redistribution.accept(food, date);
+    public void executeRedistribution(Food food) {
         for (Redistribution redistribution : redistributions) {
-            if (predicate.test(redistribution)) {
+            if (redistribution.accept(food, date)) {
                 redistribution.add(food, date);
-                result = redistribution.getClass().toString();
+                break;
             }
         }
-        return result;
     }
 }
