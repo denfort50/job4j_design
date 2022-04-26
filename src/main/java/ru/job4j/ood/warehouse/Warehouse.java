@@ -29,6 +29,6 @@ public class Warehouse implements Redistribution {
 
     @Override
     public List<Food> get() {
-        return storage;
+        return List.copyOf(storage);
     }
 }

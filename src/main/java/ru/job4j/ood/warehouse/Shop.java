@@ -32,6 +32,6 @@ public class Shop implements Redistribution {
 
     @Override
     public List<Food> get() {
-        return storage;
+        return List.copyOf(storage);
     }
 }
