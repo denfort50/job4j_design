@@ -24,10 +24,10 @@ public class ParkingOffice implements Parking {
         if (vehicle.getSize() == PassengerCar.SIZE && passengerCarSlotsAmount > 0) {
             result = passengerCarSlots.add(vehicle);
             passengerCarSlotsAmount--;
-        } else if (vehicle.getSize() > 1 && truckSlotsAmount > 0) {
+        } else if (vehicle.getSize() > PassengerCar.SIZE && truckSlotsAmount > 0) {
             result = truckSlots.add(vehicle);
             truckSlotsAmount--;
-        } else if (vehicle.getSize() > 1 && passengerCarSlotsAmount >= vehicle.getSize()) {
+        } else if (vehicle.getSize() > PassengerCar.SIZE && passengerCarSlotsAmount >= vehicle.getSize()) {
             result = passengerCarSlots.add(vehicle);
             passengerCarSlotsAmount -= vehicle.getSize();
         }
