@@ -15,8 +15,8 @@ public class SimpleMenu implements Menu {
             result = true;
         } else {
             Optional<ItemInfo> temp = findItem(parentName);
-            if (temp.isPresent() && getMenuItem(parentName).isPresent()) {
-                getMenuItem(parentName).get().getChildren().add(simpleMenuItem);
+            if (temp.isPresent()) {
+                temp.get().menuItem.getChildren().add(simpleMenuItem);
                 result = true;
             }
         }
@@ -53,23 +53,13 @@ public class SimpleMenu implements Menu {
 
     private Optional<ItemInfo> findItem(String name) {
         DFSIterator iterator = new DFSIterator();
-        if (iterator.hasNext()) {
+        while (iterator.hasNext()) {
             Optional<ItemInfo> temp = Optional.of(iterator.next());
             if (name.equals(temp.get().menuItem.getName())) {
                 return temp;
             }
         }
         return Optional.empty();
-    }
-
-    public Optional<MenuItem> getMenuItem(String name) {
-        Optional<MenuItem> menuItem = Optional.empty();
-        for (MenuItem item : rootElements) {
-            if (name.equals(item.getName())) {
-                menuItem = Optional.of(item);
-            }
-        }
-        return menuItem;
     }
 
     private static class SimpleMenuItem implements MenuItem {
