@@ -12,6 +12,8 @@ public interface Redistribution {
 
     boolean accept(Food food, LocalDate date);
 
+    void clear();
+
     default double calculateQuality(Food food, LocalDate date) {
         double daysProductLives = ChronoUnit.DAYS.between(food.getCreateDate(), food.getExpiryDate());
         double daysAfterProductManufactured = ChronoUnit.DAYS.between(food.getCreateDate(), date);

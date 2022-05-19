@@ -31,4 +31,9 @@ public class Warehouse implements Redistribution {
     public List<Food> get() {
         return List.copyOf(storage);
     }
+
+    @Override
+    public void clear() {
+        storage.clear();
+    }
 }

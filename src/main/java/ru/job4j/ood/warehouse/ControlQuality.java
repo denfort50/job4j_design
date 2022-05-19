@@ -21,4 +21,12 @@ public class ControlQuality {
             }
         }
     }
+
+    public void resort() {
+        redistributions.forEach(redistribution -> {
+            List<Food> food = redistribution.get();
+            redistribution.clear();
+            food.forEach(this::executeRedistribution);
+        });
+    }
 }
