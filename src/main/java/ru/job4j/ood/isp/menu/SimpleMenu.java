@@ -9,6 +9,9 @@ public class SimpleMenu implements Menu {
     @Override
     public boolean add(String parentName, String childName, ActionDelegate actionDelegate) {
         boolean result = false;
+        if (findItem(childName).isPresent()) {
+            return false;
+        }
         SimpleMenuItem simpleMenuItem = new SimpleMenuItem(childName, actionDelegate);
         if (Objects.equals(SimpleMenu.ROOT, parentName)) {
             rootElements.add(simpleMenuItem);
@@ -39,9 +42,6 @@ public class SimpleMenu implements Menu {
 
             @Override
             public MenuItemInfo next() {
-                if (!hasNext()) {
-                    throw new NoSuchElementException();
-                }
                 ItemInfo itemInfo = dfsIterator.next();
                 return new MenuItemInfo(itemInfo.menuItem, itemInfo.number);
             }
