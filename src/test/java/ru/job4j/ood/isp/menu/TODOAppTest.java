@@ -29,7 +29,7 @@ public class TODOAppTest {
         todoApp.add("Сходить на работу", "Дописать документацию AFS", STUB_ACTION);
         todoApp.add("Сходить на работу", "Разобраться с XSELL задачей", STUB_ACTION);
         todoApp.add(Menu.ROOT, "Сходить в магазин", STUB_ACTION);
-        todoApp.print(todoApp);
+        todoApp.showMenu(todoApp.getTasks());
         String ln = System.lineSeparator();
         assertEquals("1. Сделать задачу на курсе java" + ln
                 + "2. Сходить на работу" + ln
