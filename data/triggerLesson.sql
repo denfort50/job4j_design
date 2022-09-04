@@ -38,8 +38,7 @@ create or replace function taxTwo()
     returns trigger as
 $$
 BEGIN
-    update products
-    set price = price + price * 0.2;
+    new.price = new.price * 1.2;
     return NEW;
 END;
 $$
