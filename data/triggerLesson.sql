@@ -19,15 +19,15 @@ create or replace function taxOne()
 $$
 BEGIN
     update products
-    set price = price + price * 0.2;
+    set price = price * 1.2
+    where id = (select id from inserted);
     return NEW;
 END;
 $$
     LANGUAGE 'plpgsql';
-
 create trigger tax_one_trigger
-    after insert
-    on products
+    after insert on products
+    referencing new table as inserted
     for each statement
 execute procedure taxOne();
 
