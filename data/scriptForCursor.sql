@@ -31,5 +31,6 @@ MOVE LAST FROM cursor_products;
 FETCH BACKWARD FROM cursor_products;
 FETCH BACKWARD 5 FROM cursor_products;
 MOVE BACKWARD 9 FROM cursor_products;
+FETCH BACKWARD 5 FROM cursor_products;
 CLOSE cursor_products;
 COMMIT;
